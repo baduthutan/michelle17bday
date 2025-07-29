@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <!-- Primary Meta Tags -->
+    <meta property="og:title" content="Michelle's 17 Birthday Party">
+    <meta property="og:description" content="Hello ! Dear my beloved friends, you are cordially invited to my 17th Birthday.">
+    <meta property="og:type" content="website">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:image" content="https://Michelle.17birthdayparty.my.id/assets/desktop/bg1.avif">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Michelle's 17 Birthday Party">
+    <meta property="og:site_name" content="Michelle's 17 Birthday Party">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&display=swap" rel="stylesheet">
+    <script
+          src="https://kit.fontawesome.com/dacca0db2e.js"
+          crossorigin="anonymous"
+        ></script>
+    <title>Michelle's 17th Birthday Party</title>
+    <style>
+      html {
+        overflow-x: hidden;
+      }
+      body {
+        width: 100%;
+        overflow: hidden;
+        font-family: "Playfair display", serif;
+        font-weight: 700;
+        /* background-color: black; */
+      }
+      .cinzel {
+        font-family: "Cinzel", serif;
+        font-weight: 700;
+      }
+      /* overlay */
+      #overlay {
+        position: fixed; /* Cover the entire viewport */
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url("assets/cover/bgcover.avif") no-repeat center center
+          fixed;
+        background-size: cover; /* Make sure the image covers the entire viewport */
+        background-attachment: scroll;
+        z-index: 1031;
+      }
+      #overlay-contents {
+        position: absolute;
+        bottom: 4%; /* Adjust according to your needs */
+        left: 50%;
+        transform: translateX(-50%); /* Centers the content horizontally */
+        text-align: center;
+      }
+
+      .dear-box {
+        width: 80%;
+        padding-top: 24%;
+        background-image: url("assets/cover/cover_1.avif");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center center;
+      }
+      /* gif */
+      #gif {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url("assets/anim2.gif") no-repeat left center fixed;
+        background-size: cover;
+        background-attachment: scroll;
+        z-index: 2;
+        mix-blend-mode: plus-lighter;
+        /* mix-blend-mode: multiply; */
+        /* filter: brightness(50%); */
+      }
+      /* audio */
+      #audioControl {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 99;
+        cursor: pointer;
+        padding: 8px 12px 10px 12px;
+        background-color: rgb(255, 255, 255, 0.5);
+        color: #fff;
+        border-radius: 5px;
+      }
+      .btn {
+        position: relative;
+        background: #ffffff;
+        border: none; /* Remove the default border */
+        color: black;
+        cursor: pointer;
+        z-index: 1;
+      }
+      .white-text-shadow {
+        text-shadow: 
+            2px 2px 3px white, 
+            -2px -2px 3px white, 
+            2px -2px 3px white, 
+            -2px 2px 3px white,
+            0px 2px 3px white,
+            0px -2px 3px white,
+            2px 0px 3px white,
+            -2px 0px 3px white;
+        }
+      /* .btn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+        background: linear-gradient(90deg, #AD7C25, #E3C478, #BC8F3B);
+        border-radius: 100px;
+        padding: 4px;
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+      } */
+
+      /* navbar */
+      .navbar-toggler {
+        border: none;
+      }
+      .navbar-nav a {
+        text-shadow: 2px 2px rgba(50, 50, 50, 0.5);
+      }
+      /* backgrounds */
+      .bg {
+        position: relative;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        width: 100%;
+        padding-top: 178%;
+      }
+      section {
+        position: absolute;
+        width: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 3;
+      }
+      /* animation */
+      img.img-fluid {
+        transform: translateY(25px);
+        opacity: 0;
+        transition: transform 1s, opacity 1s;
+      }
+      .main-image {
+        transform: translateY(0) !important;
+        opacity: 1 !important;
+      }
+      .disappear {
+        visibility: hidden;
+      }
+
+      /* countdown mobile */
+      .timer {
+        width: 100%;
+        padding-top: 40%; /* This maintains the aspect ratio */
+        transform: translateX(4%) translateY(-10%);
+      }
+
+      .timer .col-4 {
+        width: 13vw;
+        height: 26vw;
+        padding: 0;
+        transform: translateY(-12vw) translateX(-7.5vw);
+        font-size: large !important;
+        padding-top: 5vw;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+      }
+
+      .modal {
+        --bs-modal-bg: rgba(0, 0, 0, 0);
+      }
+
+      /* form */
+
+      .border-secondary {
+        border-color: #fff !important;
+      }
+      .btn-rsvp {
+        border: none;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        cursor: pointer;
+      }
+
+      .clip-diamond {
+        clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+      }
+
+    
+      /* media query */
+      .ds-com {
+        display: none;
+      }
+      .mobile-com {
+        display: block;
+      }
+      @media (min-aspect-ratio: 1/1) {
+        .mobile-com {
+          display: none;
+        }
+        .ds-com {
+          display: block;
+        }
+        /* overlay */
+        #overlay {
+          background: url("assets/desktop/bgcover.avif") no-repeat right center scroll;
+          position: fixed;
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-position: center center;
+          width: 100%;
+          padding-top: 10%;
+        }
+        #overlay-contents {
+          bottom: 4%;
+          left: 73%;
+        }
+        .dear-box {
+          width: 32%;
+          padding-top: 24%;
+          transform: translateY(14vw);
+        }
+        .bg {
+          padding-top: 56.25%;
+        }
+        .timer {
+          padding-top: 26%;
+        }
+        /* coundown desktop */
+        .timer .col-4 {
+          width: 6.7vw;
+          height: 13vw;
+          padding-top: 2.8vw;
+        }
+
+        /* page7 */
+        .wish-form label,
+        .wish-form input,
+        .wish-form textarea,
+        .wish-form button,
+        .wish-list {
+          font-size: 16px;
+        }
+        .wish-list {
+          max-height: 20vh;
+        }
+        .invit {
+          transform: rotate(-10deg) !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- @if(session('success'))
+    <script>
+      alert("{{ session('success') }}");
+    </script>
+    @endif -->
+    <audio id="myAudio" autoplay loop>
+      <source src="assets/bgsound.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+    <div id="audioControl" onclick="toggleAudio()">
+      <i class="fa-solid fa-volume-up" style="color: #000;"></i>
+    </div>
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-transparent px-3 py-2">
+      <div class="flex items-center justify-between">
+        <a class="flex items-center" href="#">
+          <img
+            src="assets/slide_1/bg1_1.avif"
+            alt="Illona Logo"
+            width="80"
+            height="45"
+          />
+        </a>
+        <button
+          class="block lg:hidden text-black/70 border-black/0 p-2 rounded-md transition-colors bg-transparent"
+          type="button"
+          onclick="toggleMobileMenu()"
+          aria-label="Toggle navigation"
+          id="toggleButton"
+        >
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+        <div class="hidden lg:flex items-center space-x-8" id="navbarNav">
+          <a class="text-gray-800 font-medium hover:text-gray-600 transition-colors px-4 py-2" href="#2">Profile</a>
+          <a class="text-gray-800 font-medium hover:text-gray-600 transition-colors px-4 py-2" href="#3">The Day</a>
+          <a class="text-gray-800 font-medium hover:text-gray-600 transition-colors px-4 py-2" href="#4">Venue</a>
+          <a class="text-gray-800 font-medium hover:text-gray-600 transition-colors px-4 py-2" href="#5">Dresscode</a>
+          <a class="text-gray-800 font-medium hover:text-gray-600 transition-colors px-4 py-2" href="#6">Gallery</a>
+          <a class="text-gray-800 font-medium hover:text-gray-600 transition-colors px-4 py-2" href="#7">Wishes</a>
+        </div>
+      </div>
+      <!-- Mobile menu -->
+      <div class="hidden absolute top-full left-0 right-0 bg-[#C3C3C4] bg-opacity-50" id="mobileMenu">
+        <div class="flex flex-col space-y-2 p-4">
+          <a class="text-gray-800 font-medium hover:text-gray-600 transition-colors px-4 py-2" href="#2">Profile</a>
+          <a class="text-gray-800 font-medium hover:text-gray-600 transition-colors px-4 py-2" href="#3">The Day</a>
+          <a class="text-gray-800 font-medium hover:text-gray-600 transition-colors px-4 py-2" href="#4">Venue</a>
+          <a class="text-gray-800 font-medium hover:text-gray-600 transition-colors px-4 py-2" href="#5">Dresscode</a>
+          <a class="text-gray-800 font-medium hover:text-gray-600 transition-colors px-4 py-2" href="#6">Gallery</a>
+          <a class="text-gray-800 font-medium hover:text-gray-600 transition-colors px-4 py-2" href="#7">Wishes</a>
+        </div>
+      </div>
+    </nav>
+    <!-- landing section -->
+    <div
+      class="bg bg-[url('assets/slide_1/bg1.avif')] md:bg-[url('assets/desktop/bg1.avif')]"
+      id="1"
+    >
+    </div>
+    <!-- invitation section  -->
+   <div
+      class="bg bg-[url('assets/slide_2/bg2.avif')] md:bg-[url('assets/desktop/bg2.avif')]"
+      id="2"
+    >
+      <section class="text-center top-[0%]">
+        <img
+          src="assets/slide_2/bg2_1.avif"
+          alt="invitation title"
+          class="img-fluid img-float pt-[15vw] pl-[22vw] md:pl-[56vw] md:pt-[6vw] md:pr-[3vw]"
+        />
+               <img
+          src="assets/slide_2/bg2_2.avif"
+          alt="invitation title"
+          class="img-fluid img-float pl-[23vw] mt-[5vw] md:pl-[18vw] md:-mt-[24vw] md:pr-[42vw]"
+        />
+      </section>
+    </div>
+    <!-- dates section -->
+    <div
+      class="bg bg-[url('assets/slide_3/bg3.avif')] md:bg-[url('assets/desktop/bg3.avif')]"
+      id="3"
+    >
+      <section class="text-center top-[0%]">
+        <div class="md:-rotate-[3deg]">
+          <img
+            src="assets/slide_3/bg3_1.avif"
+            alt="date title"
+            class="img-fluid img-float pl-[24vw] pr-[2vw] mt-[18vw] md:mt-[10vw] md:pl-[60vw] md:pr-[6.5vw]"
+          />
+        </div>
+          <img
+            src="assets/slide_3/bg3_2.avif"
+            alt="date title"
+            class="img-fluid img-float pl-[22vw] pr-[13vw] mt-[8vw] mobile-com"
+          />
+          <img
+            src="assets/desktop/bg3_1.avif"
+            alt="date title"
+            class="img-fluid img-float pl-[8vw] pr-[41vw] -mt-[27vw] ds-com"
+          />
+          <div class="-translate-x-[19.5vw] -translate-y-[19vw] rotate-[8deg] md:rotate-[3deg] md:-mt-[3.5vw] md:translate-x-[8vw] md:-translate-y-[17.5vw] md:pl-[29vw]">
+            <div class="grid grid-cols-3 timer flex justify-center px-[23vw] md:px-[20vw] md:text-lg">
+              <div
+              >
+                <p id="day" class="text-[5vw] md:text-[3vw]">00</p>
+              </div>
+              <div
+                class="mx-[0vw] md:mx-[1vw]"
+              >
+                <p id="hrs" class="text-[5vw] md:text-[3vw]">00</p>
+              </div>
+              <div
+              >
+                <p id="min" class="text-[5vw] md:text-[3vw]">00</p>
+              </div>
+            </div>
+          </div>
+      </section>
+    </div>
+    <!-- break -->
+    <div
+      class="bg bg-[url('assets/slide_4/bg4.avif')] md:bg-[url('assets/desktop/bg4.avif')]"
+      id="4"
+    >
+    <section class="text-center top-[0%]">
+      <div class="relative w-full">
+        <img
+          src="assets/slide_4/bg4_1.avif"
+          alt="venue title"
+          class="img-fluid img-float mt-[12vw] pl-[15vw] pr-[15vw] md:mt-[12.5vw] md:pl-[57vw] md:pr-[10vw] relative z-20 pointer-events-none"
+        /> 
+        <a href="https://maps.app.goo.gl/P2fMrhQLZaNheQot6" class="block relative z-10 md:rotate-[52deg]">
+          <img
+            src="assets/slide_4/bg4_2.avif"
+            alt="venue title"
+            class="img-fluid img-float pl-[3vw] md:pl-[41vw] pr-[44vw] md:pr-[34vw] mt-[53vw] md:-mt-[2vw]"
+          />
+        </a> 
+    </section>
+  
+    </div>
+    <!-- break -->
+    <div
+      class="bg bg-[url('assets/slide_5/bg5.avif')] md:pt-[56.5%] md:bg-[url('assets/desktop/bg5.avif')]"
+      id="5"
+    >
+      <section
+        class="text-center top-[0%]"
+      >
+        <img
+          src="assets/slide_5/bg5_1.avif"
+          alt="attire title"
+          class="img-fluid img-float pl-[23vw] pr-[18vw] mt-[12vw] md:pl-[50vw] md:pr-[18vw] md:mt-[2vw]"
+        />
+          <img
+          src="assets/slide_5/bg5_2.avif"
+          alt="attire color"
+          class="img-fluid img-float mt-[70vw] pl-[0vw] pr-[0vw] md:pl-[42vw] md:pr-[9vw] md:-mt-[2.5vw]"
+        />
+      </section>
+    </div>
+    <!-- break -->
+    <div
+      class="bg bg-[url('assets/slide_6/bg6_c.avif')] md:bg-[url('assets/desktop/bg6.avif')]"
+      id="6"
+    >
+      <section class="text-center top-[0%]">
+        <img
+          src="assets/slide_6/bg6_1.avif"
+          alt="attire title"
+          class="img-fluid img-float pl-[17vw] pr-[10vw] mt-[11vw] md:mt-[2vw] md:pl-[32vw] md:pr-[32vw]"
+        />
+            <div class="grid grid-cols-2 mt-[2vw] gap-x-[0vw] pl-[13vw] pr-[10vw] md:grid-cols-3 md:pl-[26vw] md:pr-[26vw] md:mt-[0vw]">
+              <div class="flex justify-center">
+                <img
+                  src="assets/slide_6/bg6_2.avif"
+                  alt="gallery img 3"
+                  class="img-fluid img-float rounded-full cursor-pointer"
+                  style="aspect-ratio: 1/1; object-fit: cover; width: 100%; max-width: 100%;"
+                  onclick="act1()"
+                />
+              </div>
+              <div class="flex justify-center">
+                <img
+                  src="assets/slide_6/bg6_3.avif"
+                  alt="gallery img 3"
+                  class="img-fluid img-float rounded-full cursor-pointer"
+                  style="aspect-ratio: 1/1; object-fit: cover; width: 100%; max-width: 100%;"
+                  onclick="act2()"
+                /> 
+              </div>
+              <div class="flex justify-center ds-com">
+                <img
+                  src="assets/slide_6/bg6_4.avif"
+                  alt="gallery img 3"
+                  class="img-fluid img-float rounded-full cursor-pointer ds-com"
+                  style="aspect-ratio: 1/1; object-fit: cover; width: 100%; max-width: 100%;"
+                  onclick="act3()"
+                />
+              </div>
+            </div>
+            <div class="grid grid-cols-1 -mt-[6vw] gap-x-[0vw] pl-[34vw] pr-[30vw] mobile-com">
+              <div class="flex justify-center mobile-com">
+                <img
+                  src="assets/slide_6/bg6_4.avif"
+                  alt="gallery img 3"
+                  class="img-fluid img-float rounded-full cursor-pointer mobile-com"
+                  style="aspect-ratio: 1/1; object-fit: cover; width: 100%; max-width: 100%;"
+                  onclick="act3()"
+                />
+              </div>
+            </div>
+            <div class="grid grid-cols-2 -mt-[6vw] gap-x-[0vw] pl-[13vw] pr-[10vw] md:pl-[35vw] md:pr-[35vw] md:mt-[3vw]">
+              <div class="flex justify-center">
+                <img
+                  src="assets/slide_6/bg6_5.avif"
+                  alt="gallery img 3"
+                  class="img-fluid img-float rounded-full cursor-pointer"
+                  style="aspect-ratio: 1/1; object-fit: cover; width: 100%; max-width: 100%;"
+                  onclick="act4()"
+                />
+              </div>
+              <div class="flex justify-center">
+                <img
+                  src="assets/slide_6/bg6_6.avif"
+                  alt="gallery img 3"
+                  class="img-fluid img-float rounded-full cursor-pointer"
+                  style="aspect-ratio: 1/1; object-fit: cover; width: 100%; max-width: 100%;"
+                  onclick="act5()"
+                /> 
+              </div>
+            </div>
+          <div>
+            <img
+            src="assets/slide_6/bg6_7.avif"
+            alt="attire title"
+            class="img-fluid img-float pl-[32vw] pr-[25vw] mt-[1vw] md:mt-[0vw] md:pl-[40vw] md:pr-[40vw]"
+          />
+          </div>
+      </section>
+    </div>
+  
+    <!-- break -->
+    <div
+      class="bg bg-[url('assets/slide_7/bg7.avif')] pt-[208.6%] text-[12px] md:bg-[url('assets/desktop/bg7.avif')] md:pt-[99%]"
+      id="7"
+    >
+      <section
+        class="text-center top-[0%]"
+      >
+        <img
+          src="assets/slide_7/bg7_1.avif"
+          alt="invitation"
+          class="img-fluid img-float pl-[8vw] pr-[10vw] mt-[12vw] md:pl-[32vw] md:pr-[32vw] md:mt-[9vw]"
+        />
+
+        <div class="pl-[20vw] pr-[20vw] mt-[17vw] md:mt-[10vw] md:px-[36vw]">
+            <form
+            action="{{ route('guests.wish') }}"
+            method="post"
+            class="wish-form text-slate-50"
+          >
+            <!-- @csrf -->
+            <label for="sender" class="text-center text-black fw-light w-100 text-[4vw] mb-[4px]"
+           
+              >NAMA:</label
+            >
+            <input
+              type="text"
+              name="sender"
+              id="sender"
+                class="w-full mb-[10px] p-[5px] md:p-[10px] border-none rounded-lg"
+              required
+            />
+
+            <label for="wish" class="text-center text-black fw-light w-full text-[4vw] mb-[4px]"
+           
+              >WISH:</label
+            >
+            <textarea
+              name="wish"
+              id="wish"
+              rows="1"
+              class="w-full mb-[15px] p-[5px] md:p-[10px] border-none rounded-lg"
+              required
+            ></textarea>
+
+            <button
+              type="submit"
+              class="btn w-full mb-[2px] border-none p-[5px] md:p-[10px] rounded-lg bg-[#DAB585] text-black hover:text-black"
+              style="transition: background-color 0.3s; background-color: #DAB585;"
+              onmouseover="this.style.backgroundColor='#E6C68A';"
+              onmouseout="this.style.backgroundColor='#DAB585';"
+            >
+              SUBMIT
+            </button>
+          </form>
+            <div class="max-h-[28vw] mt-[1vw] md:mt-[4vw] overflow-y-scroll -mb-[5vw] md:mb-[4vw] md:max-h-[14vw]">
+          <!-- @foreach($wishes as $wish)
+            <div class="p-[5px] border-b-4 border-black md:text-lg text-black">
+              {{ $wish->sender }}<br />
+              {{ $wish->wish }}
+            </div>
+            @endforeach -->
+            <div class="p-[5px] border-b-4 border-black md:text-lg text-black">
+              Tabita<br />
+              Happy sweet seventeen friend!
+            </div>
+            <div class="p-[5px] border-b-4 border-black md:text-lg text-black">
+              Tabita<br />
+              Happy sweet seventeen friend!
+            </div>
+            <div class="p-[5px] border-b-4 border-black md:text-lg text-black">
+              Tabita<br />
+              Happy sweet seventeen friend!
+            </div>
+            <div class="p-[5px] border-b-4 border-black md:text-lg text-black">
+              Tabita<br />
+              Happy sweet seventeen friend!
+            </div>
+ 
+            </div>
+            <p
+            class="mb-1 mt-[9vw] text-lg md:text-[2vw] font-light md:mt-[1vw] md:pb-[2vw] text-black md:text-[2.8vw]"
+          >
+            Will you attend?
+          </p>
+          <div class="grid grid-cols-2 gap-4 px-[0vw] md:px-[2vw] mb-[5vw]">
+            <!-- @php
+              $guestName = $guest->name;
+              $hadir = "Michelle Sweet Seventeen Birthday Party\nNama (sesuai undangan) : $guestName\nKehadiran : Hadir"
+              $tidakHadir = "Michelle Sweet Seventeen Birthday Party\nNama (sesuai undangan) : $guestName\nKehadiran : Tidak Hadir"
+  
+              $encodedHadir = urlencode($hadir);
+              $encodedTidakHadir = urlencode($thidakHadir);
+          @endphp -->
+            <a
+              href="https://api.whatsapp.com/send/?phone=6282331558378&text={{ $encodedHadir }}&type=phone_number&app_absent=0" 
+              target="_blank"
+              type="button"
+                class="btn btn-rsvp shadow p-[5px] md:p-[10px] md:py-[1vw] rounded-lg text-md md:text-lg bg-[#DAB585] text-black"
+                style="transition: background-color 0.3s; background-color: #DAB585;"
+                onmouseover="this.style.backgroundColor='#E6C68A';"
+                onmouseout="this.style.backgroundColor='#DAB585';"
+              >YES</a>
+            <a
+              href="https://api.whatsapp.com/send/?phone=6282331558378&text={{ $encodedTidakHadir }}&type=phone_number&app_absent=0" 
+              target="_blank"
+              type="button"
+              class="btn btn-rsvp shadow md:btn-lg p-[5px] md:p-[10px] rounded-lg md:py-[1vw] md:text-lg bg-[#DAB585] text-black"
+              style="transition: background-color 0.3s; background-color: #DAB585;"
+              onmouseover="this.style.backgroundColor='#E6C68A';"
+              onmouseout="this.style.backgroundColor='#DAB585';"
+              >NO</a>
+          </div>
+        </div>
+      </section>
+      <section class="bottom-[2%] px-[2vw] md:bottom-[2%] md:px-[24vw]">
+        <img
+          src="assets/slide_7/bg7_2.avif"
+          alt="invitation"
+          class="img-fluid img-float px-4 thanks"
+        />
+      </section>
+    </div>
+    <!-- break -->
+    <div
+      class="fixed inset-0 z-50 hidden bg-black bg-opacity-50 flex items-center justify-center"
+      id="myModal"
+    >
+      <div class="relative max-w-4xl w-full mx-4">
+        <div class="bg-transparent rounded-lg overflow-hidden">
+          <div class="relative" id="carouselExample">
+            <div class="flex transition-transform duration-300 ease-in-out">
+              <div class="w-full flex-shrink-0 px-4 py-6" id="act1">
+                <img
+                  src="assets/slide_6/g1.avif"
+                  class="block w-full h-auto lg:max-h-[80vh] rounded object-contain"
+                  alt="Gallery image 1"
+                />
+              </div>
+              <div class="w-full flex-shrink-0 px-4 py-6 hidden" id="act2">
+                <img
+                  src="assets/slide_6/g2.avif"
+                  class="block w-full h-auto lg:max-h-[80vh] rounded object-contain"
+                  alt="Gallery image 2"
+                />
+              </div>
+              <div class="w-full flex-shrink-0 px-4 py-6 hidden" id="act3">
+                <img
+                  src="assets/slide_6/g3.avif"
+                  class="block w-full h-auto lg:max-h-[80vh] rounded object-contain"
+                  alt="Gallery image 3"
+                />
+              </div>
+              <div class="w-full flex-shrink-0 px-4 py-6 hidden" id="act4">
+                <img
+                  src="assets/slide_6/g4.avif"
+                  class="block w-full h-auto lg:max-h-[80vh] rounded object-contain"
+                  alt="Gallery image 4"
+                />
+              </div>
+              <div class="w-full flex-shrink-0 px-4 py-6 hidden" id="act5">
+                <img
+                  src="assets/slide_6/g5.avif"
+                  class="block w-full h-auto lg:max-h-[80vh] rounded object-contain"
+                  alt="Gallery image 5"
+                />
+              </div>
+              <div class="w-full flex-shrink-0 px-4 py-6 hidden" id="act6">
+                <img
+                  src="assets/slide_6/g6.avif"
+                  class="block w-full h-auto lg:max-h-[80vh] rounded object-contain"
+                  alt="Gallery image 6"
+                />
+              </div>
+            </div>
+            <button
+              class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 text-gray-800 p-2 rounded-full shadow-lg transition-all duration-200"
+              type="button"
+              onclick="previousSlide()"
+            >
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+              </svg>
+            </button>
+            <button
+              class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 text-gray-800 p-2 rounded-full shadow-lg transition-all duration-200"
+              type="button"
+              onclick="nextSlide()"
+            >
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </button>
+            <button
+              class="absolute top-4 right-4 bg-white bg-opacity-80 hover:bg-opacity-100 text-gray-800 p-2 rounded-full shadow-lg transition-all duration-200"
+              type="button"
+              onclick="closeModal()"
+            >
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="gif"></div>
+    <div id="overlay" onclick="hideOverlay()">
+      <section
+        id="overlay-contents"
+        class="flex flex-col justify-center items-center"
+      >
+        <div class="bg-[url('assets/cover/bgcover_1.avif')] md:bg-[url('assets/cover/bgcover_2.avif')] dear-box translate-y-[7vw] md:translate-y-[11vw]">
+          <p class="translate-y-[-7vw] text-light text-dark text-2xl md:text-3xl md:translate-y-[-10vw]">Tabita</p>
+        </div>
+        <p
+          class="cinzel text-bold mb-[2vw] md:mb-[1vw] mt-[4vw] text-md px-3 md:text-[1.8vw] text-black md:text-white"
+        >
+          Valid for: 1 person
+        </p>
+      </section>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+      $(window).scroll(function () {
+        // Navbar background color change
+        if ($(window).scrollTop() > 50) {
+          $("nav").css("background-color", "rgba(195, 195, 195, 0.5)");
+        } else {
+          $("nav").css("background-color", "transparent");
+        }
+
+        // Image Fade-In Animation based on scroll
+        $("img.img-float").each(function () {
+          let top_of_element = $(this).offset().top;
+          let bottom_of_element = top_of_element + $(this).outerHeight();
+          let bottom_of_screen =
+            $(window).scrollTop() + $(window).innerHeight();
+          let top_of_screen = $(window).scrollTop();
+
+          if (
+            bottom_of_screen > top_of_element &&
+            top_of_screen < bottom_of_element
+          ) {
+            if (!$(this).hasClass("animated")) {
+              $(this)
+                .css({
+                  transform: "translateY(0)",
+                  opacity: "1",
+                })
+                .addClass("animated");
+            }
+          } else {
+            $(this).removeClass("animated").css({
+              transform: "translateY(25px)",
+              opacity: "0",
+            });
+          }
+        });
+        $("img.img-slide-left").each(function () {
+          let top_of_element = $(this).offset().top;
+          let bottom_of_element = top_of_element + $(this).outerHeight();
+          let bottom_of_screen =
+            $(window).scrollTop() + $(window).innerHeight();
+          let top_of_screen = $(window).scrollTop();
+
+          if (
+            bottom_of_screen > top_of_element &&
+            top_of_screen < bottom_of_element
+          ) {
+            if (!$(this).hasClass("animated")) {
+              $(this)
+                .css({
+                  transform: "translateX(0)",
+                  opacity: "1",
+                })
+                .addClass("animated");
+            }
+          } else {
+            $(this).removeClass("animated").css({
+              transform: "translateX(100px)",
+              opacity: "0",
+            });
+          }
+        });
+        $("img.img-slide-right").each(function () {
+          let top_of_element = $(this).offset().top;
+          let bottom_of_element = top_of_element + $(this).outerHeight();
+          let bottom_of_screen =
+            $(window).scrollTop() + $(window).innerHeight();
+          let top_of_screen = $(window).scrollTop();
+
+          if (
+            bottom_of_screen > top_of_element &&
+            top_of_screen < bottom_of_element
+          ) {
+            if (!$(this).hasClass("animated")) {
+              $(this)
+                .css({
+                  transform: "translateX(0)",
+                  opacity: "1",
+                })
+                .addClass("animated");
+            }
+          } else {
+            $(this).removeClass("animated").css({
+              transform: "translateX(-100px)",
+              opacity: "0",
+            });
+          }
+        });
+      });
+
+      // Countdown Timer Functionality
+     $(document).ready(function () {
+        let countDownDate = new Date(2025, 7, 17, 17, 0, 0, 0).getTime();
+        let interval = setInterval(function () {
+          let now = new Date().getTime();
+          let distance = countDownDate - now;
+
+          let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+          let hours = Math.floor(
+            (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+          );
+          let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+          let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+          $("#day").text(String(days).padStart(2, "0"));
+          $("#hrs").text(String(hours).padStart(2, "0"));
+          $("#min").text(String(minutes).padStart(2, "0"));
+          $("#sec").text(String(seconds).padStart(2, "0"));
+
+          if (distance < 0) {
+            clearInterval(interval);
+            $(".countdown-timer").text("EXPIRED");
+          }
+        }, 1000);
+      });
+      // Carousel functionality
+      let currentSlide = 1;
+      const totalSlides = 6;
+
+      function showSlide(slideNumber) {
+        // Hide all slides
+        for (let i = 1; i <= totalSlides; i++) {
+          const slide = document.getElementById(`act${i}`);
+          if (slide) {
+            slide.classList.add('hidden');
+          }
+        }
+        
+        // Show the target slide
+        const targetSlide = document.getElementById(`act${slideNumber}`);
+        if (targetSlide) {
+          targetSlide.classList.remove('hidden');
+        }
+        
+        currentSlide = slideNumber;
+      }
+
+      function nextSlide() {
+        const next = currentSlide === totalSlides ? 1 : currentSlide + 1;
+        showSlide(next);
+      }
+
+      function previousSlide() {
+        const prev = currentSlide === 1 ? totalSlides : currentSlide - 1;
+        showSlide(prev);
+      }
+
+      function closeModal() {
+        document.getElementById('myModal').classList.add('hidden');
+      }
+
+      function act1() {
+        showSlide(1);
+        document.getElementById('myModal').classList.remove('hidden');
+      }
+      function act2() {
+        showSlide(2);
+        document.getElementById('myModal').classList.remove('hidden');
+      }
+      function act3() {
+        showSlide(3);
+        document.getElementById('myModal').classList.remove('hidden');
+      }
+      function act4() {
+        showSlide(4);
+        document.getElementById('myModal').classList.remove('hidden');
+      }
+      function act5() {
+        showSlide(5);
+        document.getElementById('myModal').classList.remove('hidden');
+      }
+      function act6() {
+        showSlide(6);
+        document.getElementById('myModal').classList.remove('hidden');
+      }
+      function act7() {
+        showSlide(7);
+        document.getElementById('myModal').classList.remove('hidden');
+      }
+      function act8() {
+        showSlide(8);
+        document.getElementById('myModal').classList.remove('hidden');
+      }
+      function act9() {
+        showSlide(9);
+        document.getElementById('myModal').classList.remove('hidden');
+      }
+      function act10() {
+        showSlide(10);
+        document.getElementById('myModal').classList.remove('hidden');
+      }
+      
+      // Mobile menu toggle function
+      function toggleMobileMenu() {
+        const mobileMenu = document.getElementById('mobileMenu');
+        const toggleButton = document.getElementById('toggleButton');
+        
+        if (mobileMenu.classList.contains('hidden')) {
+          mobileMenu.classList.remove('hidden');
+          toggleButton.classList.add('border-black/70');
+        } else {
+          mobileMenu.classList.add('hidden');
+          toggleButton.classList.remove('border-black/70');
+        }
+      }
+      // Audio control functionality
+      let audioElement = document.getElementById("myAudio");
+      let audioControl = document.getElementById("audioControl");
+
+      function hideOverlay() {
+        document.getElementById("overlay").classList.add("hidden");
+        audioElement.play();
+      }
+
+      function toggleAudio() {
+        if (audioElement.paused) {
+          audioElement.play();
+          // Use FontAwesome volume-up icon
+          audioControl.innerHTML = `<i class="fa-solid fa-volume-up" style="color: #000;"></i>`;
+        } else {
+          audioElement.pause();
+          // Use FontAwesome volume-mute icon
+          audioControl.innerHTML = `<i class="fa-solid fa-volume-mute" style="color: #000;"></i>`;
+        }
+      }
+    </script>
+  </body>
+</html>
